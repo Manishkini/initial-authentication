@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel="habit-tracker-icon" href="/images/logo.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="https://kit.fontawesome.com/719efef3b1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('_header'); %>
+
+    <%- body %>
+
+    <%- include('_footer'); %>
+
+    <%- script %>
+
+    <script>
+        <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme: 'sunset',
+                type: 'error',
+                layout: 'bottomLeft',
+                text: '<%= flash.error %>',
+                timeout: 1500
+            }).show();
+        <% } %>
+    </script>
+</body>
+
+</html>

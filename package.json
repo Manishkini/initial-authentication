@@ -1,0 +1,40 @@
+{
+  "name": "authentication",
+  "version": "1.0.0",
+  "description": "initial authentication for every new project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manishkini/initial-authentication.git"
+  },
+  "keywords": [
+    "authentication",
+    "jwt",
+    "google"
+  ],
+  "author": "Manish Kini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manishkini/initial-authentication/issues"
+  },
+  "homepage": "https://github.com/Manishkini/initial-authentication#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "crypto-js": "^4.1.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.4",
+    "passport": "^0.6.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-jwt": "^4.0.0"
+  }
+}
