@@ -23,12 +23,12 @@
     <%- script %>
 
     <script>
-        <% if (flash.error && flash.error.length > 0) { %>
+        <% if (flash.success && flash.success.length > 0) { %>
             new Noty({
                 theme: 'sunset',
-                type: 'error',
-                layout: 'bottomLeft',
-                text: '<%= flash.error %>',
+                type: 'success',
+                layout: 'bottomRight',
+                text: '<%= flash.success %>',
                 timeout: 1500
             }).show();
         <% } %>

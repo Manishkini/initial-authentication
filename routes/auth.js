@@ -16,6 +16,12 @@ router.get(
   authController.endSession
 );
 
+router.post(
+  '/resetPassword',
+  passport.authenticate('jwt', { session: false }),
+  authController.resetPassword
+);
+
 router.get(
   '/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })

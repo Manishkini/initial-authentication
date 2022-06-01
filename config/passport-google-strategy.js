@@ -12,7 +12,6 @@ passport.use(
       callbackURL: 'http://localhost:9633/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log('profile', profile);
       User.findOne(
         {
           email: profile.emails[0].value,

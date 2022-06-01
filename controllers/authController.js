@@ -78,6 +78,8 @@ module.exports.createSession = (req, res) => {
             user.password,
             'keepmarchingforwardking'
           ).toString(Crypto.enc.Utf8);
+          console.log('req.body.password', req.body.password);
+          console.log('storedPassword', storedPassword);
           if (storedPassword === req.body.password) {
             res.cookie(
               'token',
@@ -107,6 +109,52 @@ module.exports.endSession = (req, res) => {
 };
 
 module.exports.createSessionGoogle = (req, res) => {
+  res.cookie(
+    'token',
+    jwt.sign(req.user.toJSON(), 'keepmarchingforwardking', {
+      expiresIn: '1h',
+    })
+  );
   req.flash('success', 'Logged in successfully!');
   return res.redirect('/');
+};
+
+module.exports.resetPassword = async (req, res) => {
+  try {
+    console.log('req.body.newPassword', req.body.newPassword);
+    console.log('req.body.confirmPassword', req.body.confirmPassword);
+    if (req.body.newPassword === req.body.confirmPassword) {
+      User.findById(req.user._id, async (err, user) => {
+        if (err) {
+          console.log('error while finding user', err);
+          return;
+        }
+        if (user) {
+          user.password = Crypto.AES.encrypt(
+            req.body.newPassword,
+            'keepmarchingforwardking'
+          ).toString();
+          await user.save();
+          return res.send(400, {
+            message: 'password changed successfully!',
+            responseCode: 100,
+          });
+        } else {
+          console.log('user not found');
+          return res.redirect('back');
+        }
+      });
+    } else {
+      console.log('reset password not matched');
+      return res.send(400, {
+        message: 'password not matched',
+        responseCode: 101,
+      });
+    }
+  } catch (err) {
+    if (err) {
+      console.log('something went wrong', err);
+      return;
+    }
+  }
 };
