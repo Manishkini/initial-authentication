@@ -35,7 +35,7 @@ module.exports.create = (req, res) => {
                 email: req.body.email,
                 password: Crypto.AES.encrypt(
                   req.body.password,
-                  'keepmarchingforwardking'
+                  'your_secret'
                 ).toString(),
               },
               (err, newUser) => {
@@ -76,14 +76,14 @@ module.exports.createSession = (req, res) => {
         if (user) {
           const storedPassword = Crypto.AES.decrypt(
             user.password,
-            'keepmarchingforwardking'
+            'your_secret'
           ).toString(Crypto.enc.Utf8);
           console.log('req.body.password', req.body.password);
           console.log('storedPassword', storedPassword);
           if (storedPassword === req.body.password) {
             res.cookie(
               'token',
-              jwt.sign(user.toJSON(), 'keepmarchingforwardking', {
+              jwt.sign(user.toJSON(), 'your_secret', {
                 expiresIn: '1h',
               })
             );
@@ -111,7 +111,7 @@ module.exports.endSession = (req, res) => {
 module.exports.createSessionGoogle = (req, res) => {
   res.cookie(
     'token',
-    jwt.sign(req.user.toJSON(), 'keepmarchingforwardking', {
+    jwt.sign(req.user.toJSON(), 'your_secret', {
       expiresIn: '1h',
     })
   );
@@ -132,7 +132,7 @@ module.exports.resetPassword = async (req, res) => {
         if (user) {
           user.password = Crypto.AES.encrypt(
             req.body.newPassword,
-            'keepmarchingforwardking'
+            'your_secret'
           ).toString();
           await user.save();
           return res.send(400, {

@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(
   session({
     cookie: { maxAge: 60000 },
-    secret: 'keepmarchingforwardking',
+    secret: 'your_secret',
     resave: false,
     saveUninitialized: false,
   })

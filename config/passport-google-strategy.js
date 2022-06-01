@@ -6,9 +6,8 @@ const crypto = require('crypto');
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        '976295048057-fg04q3us7jbr91dvgev8aamucmflg8kj.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientID: '<your_client_id>',
+      clientSecret: '<yout_client_secreate>',
       callbackURL: 'http://localhost:9633/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, done) {

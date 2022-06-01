@@ -5,7 +5,7 @@ const Crypto = require('crypto-js');
 
 const option = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'keepmarchingforwardking',
+  secretOrKey: 'your_secret',
 };
 
 const User = require('../models/user');
